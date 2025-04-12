@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f2f2f2;
+        }
+        h1 {
+            text-align: center;
+        }
+        .form-container {
+            width: 60%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Loan Prediction</h1>
+    
+    <div class="form-container">
+        <form action="/predict" method="POST">
+            <label for="person_age">Age</label>
+            <input type="number" id="person_age" name="person_age" required>
+
+            <label for="person_gender">Gender (0 - Male, 1 - Female)</label>
+            <input type="number" id="person_gender" name="person_gender" min="0" max="1" required>
+
+            <label for="person_education">Education (0 - 4)</label>
+            <input type="number" id="person_education" name="person_education" min="0" max="4" required>
+
+            <label for="person_income">Income</label>
+            <input type="number" id="person_income" name="person_income" required>
+
+            <label for="person_emp_exp">Experience (Years)</label>
+            <input type="number" id="person_emp_exp" name="person_emp_exp" required>
+
+            <label for="loan_amnt">Loan Amount</label>
+            <input type="number" id="loan_amnt" name="loan_amnt" required>
+
+            <label for="loan_int_rate">Interest Rate</label>
+            <input type="number" id="loan_int_rate" name="loan_int_rate" required>
+
+            <label for="loan_percent_income">Loan Percent of Income</label>
+            <input type="number" id="loan_percent_income" name="loan_percent_income" step="0.01" required>
+
+            <label for="cb_person_cred_hist_length">Credit History Length</label>
+            <input type="number" id="cb_person_cred_hist_length" name="cb_person_cred_hist_length" required>
+
+            <label for="credit_score">Credit Score</label>
+            <input type="number" id="credit_score" name="credit_score" required>
+
+            <label for="previous_loan_defaults_on_file">Previous Loan Defaults (0 - No, 1 - Yes)</label>
+            <input type="number" id="previous_loan_defaults_on_file" name="previous_loan_defaults_on_file" min="0" max="1" required>
+
+            <label for="home_ownership">Home Ownership</label>
+            <select id="home_ownership" name="home_ownership">
+                <option value="Rent">Rent</option>
+                <option value="Own">Own</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <label for="loan_intent">Loan Intent</label>
+            <select id="loan_intent" name="loan_intent">
+                <option value="Education">Education</option>
+                <option value="Home Improvement">Home Improvement</option>
+                <option value="Medical">Medical</option>
+                <option value="Personal">Personal</option>
+                <option value="Venture">Venture</option>
+            </select>
+
+            <button type="submit">Predict Loan Status</button>
+        </form>
+
+        {% if prediction_text %}
+        <h2>{{ prediction_text }}</h2>
+        {% endif %}
+    </div>
+
+</body>
+</html>
