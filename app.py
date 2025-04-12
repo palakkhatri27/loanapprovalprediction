@@ -27,7 +27,6 @@ def predict():
         loan_percent_income = float(request.form['loan_percent_income'])
         cb_person_cred_hist_length = float(request.form['cb_person_cred_hist_length'])
         credit_score = int(request.form['credit_score'])
-        previous_loan_defaults_on_file = int(request.form['previous_loan_defaults_on_file'])  # 0 - N, 1 - Y
         
         # One-hot encoded values (home ownership and loan intent)
         home_ownership = request.form['home_ownership']
@@ -45,7 +44,6 @@ def predict():
             'loan_percent_income': loan_percent_income,
             'cb_person_cred_hist_length': cb_person_cred_hist_length,
             'credit_score': credit_score,
-            'previous_loan_defaults_on_file': previous_loan_defaults_on_file,
 
             # One-hot encoding for home ownership
             'person_home_ownership_OTHER': 1 if home_ownership == 'Other' else 0,
